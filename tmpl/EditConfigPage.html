@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настройка сервера</title>
+</head>
+<body>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .send-button{
+            width: 100px;
+			height: 25px;
+			border-radius: 25px;
+			border: 0;
+			background-color: #00ff00;
+			font-size: 100%;
+        }
+        .back-button{
+            border: 0px;
+            border-radius: 12.5px;
+            background-color: #ff0000;
+            width: 100px;
+            height: 25px;
+        }
+    </style>
+    <button class="back-button" onclick="location.href='http://localhost:8080/';">На главную</button>
+    <form action="http://localhost:8080/editconfig" method="post">
+        <h1>Настройка сервера:</h1>
+        <ul>
+            {{range $key, $value := . }}
+            <li>{{$key}}<input type="text" name={{$key}} value={{$value}}></li>
+            {{end}}
+        </ul>
+        <button type="submit" class="send-button">Принять</button>
+    </form>
+</body>
+</html>

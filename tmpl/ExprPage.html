@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список выражений</title>
+</head>
+<body>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        table{
+            border-collapse: collapse;
+        }
+        th, td, table{
+            border: 2px solid #000000;
+        }
+        button{
+            border: 0px;
+            border-radius: 12.5px;
+            background-color: #ff0000;
+            width: 100px;
+            height: 25px;
+        }
+    </style>
+    <button onclick="location.href='http://localhost:8080/';">На главную</button>
+    <h1>Список выражений:</h1>
+    <table>
+    <tr><th>id</th><th>Статус</th><th>Выражение</th><th>Результат</th><th>Дата создания</th><th>Дата окончания</th></tr>
+    {{range .}}
+        <tr><td>{{.Id}}</td><td>{{.Status}}</td><td>{{.Expr}}</td><td>{{.Result}}</td><td>{{.Start}}</td><td>{{.End}}</td></tr>
+    {{end}}
+    </table>
+</body>
+</html>
