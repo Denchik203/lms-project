@@ -132,16 +132,24 @@ func ExpressionsPage(w http.ResponseWriter, r *http.Request) {
 
 func EditConfig(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
+	var (
+		keys   = make([]string, 0)
+		values = make([]string, 0)
+	)
 	for key, val := range r.Form {
 		newVal, err := strconv.Atoi(val[0])
-		if err == nil {
+		if err == nil && newVal >= 0 {
 			mux.Lock()
 			config[key] = newVal
+			values = append(values, string(config[key]))
 			mux.Unlock()
+			keys = append(keys, key)
 		}
 	}
-	ECtpl.Execute(w, config)
-	pool.Update()
+	f, _ := os.Open("config.csv")
+	writer := csv.NewWriter(f)
+	writer.Write(keys)
+	writer.Write(values)
 }
 
 func WorkerMonitor(w http.ResponseWriter, r *http.Request) {
