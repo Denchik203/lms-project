@@ -152,6 +152,7 @@ func EditConfig(w http.ResponseWriter, r *http.Request) {
 	writer := csv.NewWriter(f)
 	writer.Write(keys)
 	writer.Write(values)
+	f.Close()
 }
 
 func main() {
