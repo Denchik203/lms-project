@@ -31,7 +31,7 @@
         <h1>Настройка сервера:</h1>
         <ul>
             {{range $key, $value := . }}
-            <li>{{$key}}<input type="text" name={{$key}} value={{$value}}></li>
+            <li>{{$key}}: <input type="text" name={{$key}} value={{$value}}></li>
             {{end}}
         </ul>
         <button type="submit" class="send-button">Принять</button>
